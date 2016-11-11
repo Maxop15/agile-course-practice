@@ -1,124 +1,116 @@
-import Deque.java.Deque;
+import main.java.Deque;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class WhenAddDeleteElementToDeque {
-    private Deque<Integer>  IntDeque;
-    private Deque<String> StrDeque;
+    private Deque newDeque;
 
     @Before
     public void setUp() throws  Exception {
-        IntDeque = new Deque<Integer>();
-        StrDeque = new Deque<String>();
+        newDeque = new Deque();
     }
 
     @Test
-    public void GetSizeEmptyDeque() {
-        Deque<Integer> EmptyDeque = new Deque<Integer>();
-        int sizeDeque = Deque.GetCurrentSize();
-        assertEquals(0,sizeDeque);
+    public void getSizeEmptyDeque() {
+        Deque emptyDeque = new Deque();
+        int sizeDeque = newDeque.getCurrentSize();
+        assertEquals(0, sizeDeque);
     }
 
     @Test
-    public void PushHeadIntElement() {
-        IntDeque.PushHeadElement(5);
-        assertEquals(1, IntDeque.GetCurrentSize());
+    public void pushHeadIntElement() {
+        newDeque.pushHeadElement(5);
+        assertEquals(1, newDeque.getCurrentSize());
     }
 
     @Test
-    public void CheckSizeAfterClear() {
-        IntDeque.PushHeadElement(5);
-        IntDeque.Clear();
-        assertEquals(0, IntDeque.GetCurrentSize());
+    public void checkSizeAfterClear() {
+        newDeque.pushHeadElement(5);
+        newDeque.clear();
+        assertEquals(0, newDeque.getCurrentSize());
     }
 
     @Test
-    public void PopHeadIntElement() {
-        IntDeque.PushHeadElement(5);
-        int Element =  IntDeque.PopHeadElement();
-        assertEquals(Element, 5);
+    public void popHeadIntElement() {
+        newDeque.pushHeadElement(5);
+        int element =  newDeque.popHeadElement();
+        assertEquals(element, 5);
     }
 
     @Test
-    public void PushTailIntElement() {
-        IntDeque.PushTailElement(5);
-        assertEquals(1, IntDeque.GetCurrentSize());
+    public void pushTailIntElement() {
+        newDeque.pushTailElement(5);
+        assertEquals(1, newDeque.getCurrentSize());
     }
 
     @Test
-    public void PopTailIntElement() {
-        IntDeque.PushTailElement(5);
-        int Element = IntDeque.PopTailElement();
-        assertEquals(5,Element);
+    public void popTailIntElement() {
+        newDeque.pushTailElement(5);
+        int element = newDeque.popTailElement();
+        assertEquals(5, element);
     }
 
     @Test
-    public void CheckIsEmptyMethod() {
-        IntDeque.PushTailElement(5);
-        assertEquals(false, IntDeque.IsEmpty());
-        IntDeque.PopHeadElement();
-        assertEquals(true, IntDeque.IsEmpty());
+    public void checkIsEmptyMethod() {
+        newDeque.pushTailElement(5);
+        assertEquals(false, newDeque.isEmpty());
+        newDeque.popHeadElement();
+        assertEquals(true, newDeque.isEmpty());
     }
 
     @Test
-    public void PushAndPopString() {
-        StrDeque.PushHeadElement("Hello, world!");
-        assertEquals("Hello, world!", StrDeque.PopHeadElement());
-    }
-
-    @Test
-    public void FewPushPopFromHead() {
+    public void pushToHeadPopFromHead() {
         for (int i = 0; i < 5; i++) {
-            IntDeque.PushHeadElement(i);
+            newDeque.pushHeadElement(i);
         }
         int result = 0;
-        for (int i = 0; i < 5; i++){
-            result = result * 10 + IntDeque.PopHeadElement();
+        for (int i = 0; i < 5; i++) {
+            result = result * 10 + newDeque.popHeadElement();
         }
         assertEquals(43210, result);
     }
 
     @Test
-    public void FewPushPopFromTail() {
+    public void pushToTailPopFromTail() {
         for (int i = 0; i < 5; i++) {
-            IntDeque.PushTailElement(i);
+            newDeque.pushTailElement(i);
         }
         int result = 0;
         for (int i = 0; i < 5; i++) {
-            result = result * 10 + IntDeque.PopTailElement();
+            result = result * 10 + newDeque.popTailElement();
         }
         assertEquals(43210, result);
     }
 
     @Test
-    public void PushElementsMoreDequeSize() {
+    public void pushElementsMoreDequeSize() {
         for (int i = 0; i < 101; i++) {
-            IntDeque.PushTailElement(i);
+            newDeque.pushTailElement(i);
         }
-        assertEquals(101, IntDeque.GetCurrentSize());
+        assertEquals(101, newDeque.getCurrentSize());
     }
 
     @Test
-    public void PushToHead_PopFromTail() {
+    public void pushToHeadPopFromTail() {
         for (int i = 0; i < 5; i++) {
-            IntDeque.PushHeadElement(i);
+            newDeque.pushHeadElement(i);
         }
         int result = 0;
         for (int i = 0; i < 5; i++) {
-            result = result * 10 + IntDeque.PopTailElement();
+            result = result * 10 + newDeque.popTailElement();
         }
         assertEquals(1234, result);
     }
 
     @Test
-    public void PushToTail_PopFromHead() {
+    public void pushToTailPopFromHead() {
         for (int i = 0; i < 5; i++) {
-            IntDeque.PushTailElement(i);
+            newDeque.pushTailElement(i);
         }
         int result = 0;
         for (int i = 0; i < 5; i++) {
-            result = result * 10 + IntDeque.PopHeadElement();
+            result = result * 10 + newDeque.popHeadElement();
         }
         assertEquals(1234, result);
     }
